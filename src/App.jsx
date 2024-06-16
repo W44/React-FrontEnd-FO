@@ -19,7 +19,7 @@ function App() {
   //   return () => clearInterval(interval);
   // }, []); // Empty dependency array to run effect only once
   return (
-    <main className='h-screen my-8 flex gap-8'>
+    <main className='h-screen my-8 flex '>
     <SidebarContextProvider>
     <Sidebar/>
     <Body/>
