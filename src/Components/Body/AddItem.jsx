@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import Input from "../../Utilities/Input";
 import { ButtonStyle2, ButtonStyleAdd, ModalTextStyle } from "../../Constants";
 import Modal from "../../Utilities/Modal";
+import { ItemListContext } from "../Contexts/ItemListContext";
 
 
 
@@ -11,22 +12,28 @@ export default function AddItem({name,price,description,children})
     const nameRef = useRef();
     const priceRef = useRef();
     const descriptionRef = useRef();
+    const ItemCtx = useContext(ItemListContext);
+
 
     function AddItemHandler()
     {
         //async call functionality tobe added
-        const itenName = nameRef.current.value;
+        const itemName = nameRef.current.value;
         const itemsPrice = priceRef.current.value;
         const itemDescription = descriptionRef.current.value;
-
         //validation 
-        if (itenName.trim() === '' || itemsPrice.trim() === '' || itemsPrice < 0 || itemDescription.trim() === '')
+        if (itemName.trim() === '' || itemsPrice.trim() === '' || itemsPrice < 0 || itemDescription.trim() === '')
             {
                 modalRef.current.open();
                 return;
             }
         console.log("AddItemHandler: invoked");
-        return true;
+        ItemCtx.setCustomItems({
+        name : itemName,
+        price : itemsPrice,
+        description : itemDescription
+        });
+        
     }
     return (
         <>
