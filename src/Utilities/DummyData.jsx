@@ -1,19 +1,20 @@
 export const DummyList = [
-    {
-        name: 'one',
-        price: 10,
-        description: 'test description 1'
-    },
-    {
-
-        name: 'two',
-        price: 20,
-        description: 'test description 2'
-    },
-    {
-
-        name: 'three',
-        price: 30,
-        description: 'test description 3'
-    }
+    
+        {
+            "id": 1,
+            "name": "tester",
+            "price": 44,
+            "description": "testing description",
+            "date": "2024-07-04",
+            "daysordered": 0
+        },
+        {
+            "id": 2,
+            "name": "tester2",
+            "price": 88,
+            "description": "testing description of 2",
+            "date": "2024-07-14",
+            "daysordered": -10
+        }
+    
 ]

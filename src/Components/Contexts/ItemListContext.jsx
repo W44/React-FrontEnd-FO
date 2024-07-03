@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { DummyList } from "../../Utilities/DummyData";
 
 
@@ -11,10 +11,10 @@ export const ItemListContext = createContext(
 })
 
 export const ItemListContextProvider = ({ children }) => {
-    const [Items, setItem] = useState(DummyList);
+    const [Items, setItem] = useState([]);
    
     const setCustomItems = (newItem) => {
-      setItem(prevItems => [...prevItems, newItem]);
+      setItem((prevItems) => [...prevItems, ...newItem]);
     };
 
     
