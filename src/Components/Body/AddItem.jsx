@@ -28,11 +28,42 @@ export default function AddItem({name,price,description,children})
                 return;
             }
         console.log("AddItemHandler: invoked");
-        ItemCtx.setCustomItems({
-        name : itemName,
-        price : itemsPrice,
-        description : itemDescription
-        });
+
+            fetch('http://localhost:8080/api/v1/order', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  "name": itemName,
+                  "price": itemsPrice,
+                  "description": itemDescription,
+                  "date": "2024-03-24"
+              })
+            }).then((response)=>{
+              if (response.ok)
+                  {
+                    const fetchData = async () => {
+                        try {
+                          const response = await fetch('http://localhost:8080/api/v1/order', {
+                              headers: {
+                                'Content-Type': 'application/json',
+                                },
+                            });
+                          if (!response.ok) {
+                            throw new Error('Server response caused an error');
+                          }
+                          const jsonData = await response.json();
+                          
+                          ItemCtx.setCustomItemsRefreshed(jsonData); 
+                        } catch (error) {
+                          console.error('Error fetching data:', error);
+                        }
+                    }
+                    fetchData();
+                  }
+                  });
         
     }
     return (

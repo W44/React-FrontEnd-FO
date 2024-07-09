@@ -7,7 +7,8 @@ import { DummyList } from "../../Utilities/DummyData";
 export const ItemListContext = createContext(
 {
     Items : [],
-    setCustomItems : () => {}
+    setCustomItems : () => {},
+    setCustomItemsRefreshed : () => {}
 })
 
 export const ItemListContextProvider = ({ children }) => {
@@ -17,10 +18,14 @@ export const ItemListContextProvider = ({ children }) => {
       setItem((prevItems) => [...prevItems, ...newItem]);
     };
 
+    const setCustomItemsRefreshed = (newItem) => {
+      setItem((prevItems) => [...newItem]);
+    };
+
     
    
     return (
-      <ItemListContext.Provider value={{ Items, setCustomItems }}>
+      <ItemListContext.Provider value={{ Items, setCustomItems, setCustomItemsRefreshed }}>
         {children}
       </ItemListContext.Provider>
     );
