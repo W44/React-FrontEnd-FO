@@ -4,6 +4,7 @@ import { SidebarContextProvider, SidebarContext } from './Components/Contexts/Si
 import { useContext, useState, useEffect } from 'react';
 import Body from './Components/Body/Body.jsx'
 import { ItemListContextProvider } from './Components/Contexts/ItemListContext.jsx';
+import { EditListItemContextProvider } from './Components/Contexts/EditListItemContext.jsx';
 
 function App() {
   

@@ -38,7 +38,7 @@ export default function Body()
         <ul>
         {menuCtx.Menu.MenuItem ==="viewCurrent" && ItemCtx.Items.map((item) => {
             return ( <li key={item.id} className=''> 
-            <ListItems name={item.name} price={item.price} description={item.description}/>
+            <ListItems id={item.id} name={item.name} price={item.price} description={item.description} date={item.date}/>
             </li>);
         })}
         </ul>
