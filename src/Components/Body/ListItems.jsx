@@ -34,7 +34,7 @@ export default function ListItems({id,name,price,description,date,children})
         </menu>
         </div> }
         {
-            Edit && <EditItem name={name} price={price} description={description} toggleEdit={toggleEdit}></EditItem>
+            Edit && <EditItem id={id} name={name} price={price} description={description} toggleEdit={toggleEdit}></EditItem>
         }
 
         </div>
