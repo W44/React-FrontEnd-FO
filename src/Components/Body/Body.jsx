@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react';
 import ListItems from './ListItems';
 import AddItem from './AddItem';
 import { ItemListContext } from '../Contexts/ItemListContext';
+import "./BodyStyles.css"
 
 export default function Body()
 {
@@ -31,18 +32,33 @@ export default function Body()
     
         fetchData();
       }, []); 
-    console.log("Body",ItemCtx)
-    return (
-        <div className='w-3/4 px-8 py-16 bg-stone-400 rounded-r-xl rounded-l-xl'>
-        {menuCtx.Menu.MenuItem ==="new" && <AddItem/>}
-        <ul>
-        {menuCtx.Menu.MenuItem ==="viewCurrent" && ItemCtx.Items.map((item) => {
-            return ( <li key={item.id} className=''> 
-            <ListItems id={item.id} name={item.name} price={item.price} description={item.description} date={item.date}/>
-            </li>);
-        })}
-        </ul>
-        {menuCtx.Menu.MenuItem ==="viewPast" && <ListItems name={'Past'} price={30} description={'testing description'}/>}
+      console.log("Body", ItemCtx);
+      return (
+        <div className="h-screen w-3/4 px-8 bg-stone-400 overflow-y-auto">
+          {menuCtx.Menu.MenuItem === "new" && <AddItem />}
+          <ul>
+            {menuCtx.Menu.MenuItem === "viewCurrent" &&
+              ItemCtx.Items.map((item) => {
+                return (
+                  <li key={item.id} className="">
+                    <ListItems
+                      id={item.id}
+                      name={item.name}
+                      price={item.price}
+                      description={item.description}
+                      date={item.date}
+                    />
+                  </li>
+                );
+              })}
+          </ul>
+          {menuCtx.Menu.MenuItem === "viewPast" && (<>
+            <ListItems name={"Past"} price={30} description={"testing description"} />
+            <ListItems name={"Past"} price={30} description={"testing description"} />
+            <ListItems name={"Past"} price={30} description={"testing description"} />
+            </>
+          )}
         </div>
-    );
+      );
+      
 }

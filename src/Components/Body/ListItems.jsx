@@ -56,25 +56,41 @@ export default function ListItems({id,name,price,description,date,children})
         }
     
 
-    return (
-        
-        <div>
-
-        { !Edit && <div className={ListItemStyle}>
-        <h3>Order</h3>
-        <h4>Name:{name}</h4>
-        <h4>Price:{price}</h4>
-        <p>Description:{description}</p>
-        <menu className="flex items-center justify-start gap-4 py-4">
-            <li><button onClick={ () => toggleEdit()} className={ButtonStyleAdd}>Edit</button></li>
-            <li><button className={ButtonStyleDelete} onClick={deleteClickHandler} >Delete</button></li>
-        </menu>
-        </div> }
-        {
-            Edit && <EditItem id={id} name={name} price={price} description={description} toggleEdit={toggleEdit}></EditItem>
-        }
-
+        return (
+          <div className="flex flex-col w-full">
+          {!Edit && (
+            <div className="w-full p-4 bg-stone-800 text-stone-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 mb-6">
+              <h3 className="text-lg font-bold text-stone-200 mb-2">Order</h3>
+              <h4 className="text-sm font-medium text-stone-300 mb-2">Name: {name}</h4>
+              <h4 className="text-sm font-medium text-stone-300 mb-2">Price: {price}</h4>
+              <p className="text-sm text-stone-300 mb-4 break-words">
+                Description: {description}
+              </p>
+              <menu className="flex items-center justify-start gap-4 pt-4 border-t border-stone-700 mt-4">
+                <li>
+                  <button onClick={() => toggleEdit()} className={ButtonStyleAdd}>
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  <button className={ButtonStyleDelete} onClick={deleteClickHandler}>
+                    Delete
+                  </button>
+                </li>
+              </menu>
+            </div>
+          )}
+          {Edit && (
+            <EditItem
+              id={id}
+              name={name}
+              price={price}
+              description={description}
+              toggleEdit={toggleEdit}
+            />
+          )}
         </div>
         
-    );
+  );
+        
 }
