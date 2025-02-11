@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ButtonStyle1 } from '../../Constants';
+import { ButtonStyle1, MenuSelect } from '../../Constants';
 import { SidebarContext } from '../Contexts/SidebarContext';
 
 export default function Sidebar()
@@ -12,7 +12,7 @@ return (
     <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-200">Menu</h2>
     <div>
       <button
-        onClick={() => menuCtx.setMenu({ type: "new" })}
+        onClick={() => menuCtx.setMenu({ type: MenuSelect.Add_New })}
         className={ButtonStyle1}
       >
         + New Order
@@ -20,7 +20,7 @@ return (
     </div>
     <div>
       <button
-        onClick={() => menuCtx.setMenu({ type: "viewCurrent" })}
+        onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Current })}
         className={ButtonStyle1}
       >
         View Current Orders
@@ -28,7 +28,7 @@ return (
     </div>
     <div>
       <button
-        onClick={() => menuCtx.setMenu({ type: "viewPast" })}
+        onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Past })}
         className={ButtonStyle1}
       >
         View Past Orders

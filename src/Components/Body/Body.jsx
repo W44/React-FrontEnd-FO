@@ -4,6 +4,7 @@ import ListItems from './ListItems';
 import AddItem from './AddItem';
 import { ItemListContext } from '../Contexts/ItemListContext';
 import "./BodyStyles.css"
+import { MenuSelect } from '../../Constants';
 
 export default function Body()
 {
@@ -35,9 +36,9 @@ export default function Body()
       console.log("Body", ItemCtx);
       return (
         <div className="h-screen w-3/4 px-8 bg-stone-400 overflow-y-auto">
-          {menuCtx.Menu.MenuItem === "new" && <AddItem />}
+          {menuCtx.Menu.MenuItem === MenuSelect.Add_New && <AddItem />}
           <ul>
-            {menuCtx.Menu.MenuItem === "viewCurrent" &&
+            {menuCtx.Menu.MenuItem === MenuSelect.View_Current &&
               ItemCtx.Items.map((item) => {
                 return (
                   <li key={item.id} className="">
@@ -52,7 +53,7 @@ export default function Body()
                 );
               })}
           </ul>
-          {menuCtx.Menu.MenuItem === "viewPast" && (<>
+          {menuCtx.Menu.MenuItem === MenuSelect.View_Past && (<>
             <ListItems name={"Past"} price={30} description={"testing description"} />
             <ListItems name={"Past"} price={30} description={"testing description"} />
             <ListItems name={"Past"} price={30} description={"testing description"} />

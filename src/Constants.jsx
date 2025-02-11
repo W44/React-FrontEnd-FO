@@ -10,7 +10,7 @@ export const InputLabelStyle = 'text-sm md:text-base text-stone-600 font-medium'
 export const TextareaFieldStyle = 'px-4 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400 focus:border-stone-500 transition duration-300 text-stone-700 placeholder-stone-400 resize-none';
 
 export const MenuSelect = {
-    OPTION_ONE: 'option_one',
-    OPTION_TWO: 'option_two',
-    OPTION_THREE: 'option_three',
+    Add_New: 'new',
+    View_Current: 'viewCurrent',
+    View_Past: 'viewPast',
   };

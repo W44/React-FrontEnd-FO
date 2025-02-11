@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import Input from "../../Utilities/Input";
-import { ButtonStyle2, ButtonStyleAdd, ModalTextStyle } from "../../Constants";
+import { ButtonStyle2, ButtonStyleAdd, MenuSelect, ModalTextStyle } from "../../Constants";
 import Modal from "../../Utilities/Modal";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import TopMassagePopup from "../../Utilities/TopMassagePopup";
@@ -63,7 +63,7 @@ export default function AddItem({ name, price, description, children }) {
                     
                     setTimeout(() => {
                         setShowSuccess(false);
-                        menuCtx.setMenu({ type: "viewCurrent" });
+                        menuCtx.setMenu({ type: MenuSelect.View_Current });
                     }, 3000);
                 } catch (error) {
                     console.error('Error fetching data:', error);
