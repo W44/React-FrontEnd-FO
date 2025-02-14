@@ -33,6 +33,7 @@ export default function Body()
     
         fetchData();
       }, []); 
+            
       console.log("Body", ItemCtx);
       return (
         <div className="h-screen w-3/4 px-8 bg-stone-400 overflow-y-auto">
