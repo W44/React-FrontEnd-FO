@@ -15,13 +15,20 @@ const Login = () => {
     setError(""); // Reset error message
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/authenticate", {
-        username,
-        password,
-      });
+        const response = await fetch('http://localhost:8080/api/v1/authenticate', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "username": username,
+                "password": password,
+            })
+        });
 
-      localStorage.setItem("token", response.data.token); // Store JWT token
-      navigate("/dashboard"); // Redirect to dashboard after login
+      localStorage.setItem("token", response.data.token);
+      navigate("/dashboard"); 
     } catch (error) {
       setError("Invalid credentials. Please try again.");
     }
