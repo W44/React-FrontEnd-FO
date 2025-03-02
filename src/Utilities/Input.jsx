@@ -14,7 +14,7 @@ const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
       {textarea ? (
         <textarea
           ref={ref}
-          className={`${classStyle} resize-none`} // Disable resizing for a cleaner look
+          className={`${classStyle} resize-none`}
           {...props}
         ></textarea>
       ) : (
