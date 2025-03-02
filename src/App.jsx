@@ -9,6 +9,7 @@ import AboutPopup from "./Components/Body/About.jsx"
 import Header from "./Components/Header/Header.jsx"
 import ErrorFallback from './Utilities/ErrorFallback.jsx';
 import { ErrorBoundary } from "react-error-boundary";
+import { AuthContextProvider } from './Components/Contexts/AuthContext.jsx';
 
 function App() {
   
@@ -21,12 +22,14 @@ function App() {
       <Header />
       <div className="flex flex-grow pt-16">
     <AboutPopup/>
+    <AuthContextProvider>
     <ItemListContextProvider>
     <SidebarContextProvider>
     <Sidebar/>
     <Body/>
     </SidebarContextProvider>
     </ItemListContextProvider>
+    </AuthContextProvider>
     </div>
     </div>
     </ErrorBoundary>

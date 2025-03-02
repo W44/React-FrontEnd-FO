@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { loginStyles } from "../Constants";
 
 
@@ -12,7 +11,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error message
+    setError("");
 
     try {
         const response = await fetch('http://localhost:8080/api/v1/authenticate', {
