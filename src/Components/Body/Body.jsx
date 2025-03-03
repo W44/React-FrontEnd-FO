@@ -5,12 +5,14 @@ import AddItem from './AddItem';
 import { ItemListContext } from '../Contexts/ItemListContext';
 import "./BodyStyles.css"
 import { MenuSelect } from '../../Constants';
+import AuthContext from '../Contexts/AuthContext';
 
 export default function Body()
 {
     
     const menuCtx = useContext(SidebarContext);
     const ItemCtx = useContext(ItemListContext);
+    const authContext = useContext(AuthContext);
 
     const [searchInput, setSearchInput] = useState("");
 
@@ -20,6 +22,7 @@ export default function Body()
             const response = await fetch('http://localhost:8080/api/v1/order', {
                 headers: {
                   'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${authContext.token}`
                   },
               });
             if (!response.ok) {

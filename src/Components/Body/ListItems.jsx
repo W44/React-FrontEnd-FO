@@ -4,6 +4,7 @@ import { ButtonStyleDelete, ButtonStyleAdd } from "../../Constants";
 import { EditListItemContext } from "../Contexts/EditListItemContext";
 import EditItem from "./EditItem";
 import { ItemListContext } from "../Contexts/ItemListContext";
+import AuthContext from "../Contexts/AuthContext";
 
 
 
@@ -11,6 +12,7 @@ export default function ListItems({id,name,price,description,date,children})
 {
 
     const ItemCtx = useContext(ItemListContext);
+    const authContext = useContext(AuthContext);
 
     const [Edit, setItem] = useState(false);
    
@@ -36,6 +38,7 @@ export default function ListItems({id,name,price,description,date,children})
                     const response = await fetch('http://localhost:8080/api/v1/order', {
                         headers: {
                           'Content-Type': 'application/json',
+                          'Authorization': `Bearer ${authContext.token}`
                           },
                       });
                     if (!response.ok) {

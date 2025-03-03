@@ -5,6 +5,7 @@ import Modal from "../../Utilities/Modal";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import TopMassagePopup from "../../Utilities/TopMassagePopup";
 import { SidebarContext } from '../Contexts/SidebarContext';
+import AuthContext from "../Contexts/AuthContext";
 
 export default function AddItem({ name, price, description, children }) {
     const modalRef = useRef();
@@ -13,6 +14,7 @@ export default function AddItem({ name, price, description, children }) {
     const descriptionRef = useRef();
     const ItemCtx = useContext(ItemListContext);
     const menuCtx = useContext(SidebarContext);
+    const authContext = useContext(AuthContext)
     
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
@@ -37,6 +39,7 @@ export default function AddItem({ name, price, description, children }) {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authContext.token}`
                 },
                 body: JSON.stringify({
                     "name": itemName,
@@ -51,7 +54,10 @@ export default function AddItem({ name, price, description, children }) {
             const fetchData = async () => {
                 try {
                     const response = await fetch('http://localhost:8080/api/v1/order', {
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authContext.token}` 
+                        },
                     });
                     if (!response.ok) throw new Error('Error fetching items');
 

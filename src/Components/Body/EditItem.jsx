@@ -4,6 +4,7 @@ import { ButtonStyle2, ButtonStyleAdd, ModalTextStyle } from "../../Constants";
 import Modal from "../../Utilities/Modal";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import { EditListItemContext } from "../Contexts/EditListItemContext";
+import AuthContext from "../Contexts/AuthContext";
 
 
 
@@ -11,6 +12,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
 {
 
     const ItemCtx = useContext(ItemListContext);
+    const authContext = useContext(AuthContext);
 
     const modalRef = useRef();
     
@@ -42,6 +44,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authContext.token}`
         },
         body: JSON.stringify({
             "name": itemName,
@@ -56,6 +59,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
                     const response = await fetch('http://localhost:8080/api/v1/order', {
                         headers: {
                           'Content-Type': 'application/json',
+                          'Authorization': `Bearer ${authContext.token}`
                           },
                       });
                     if (!response.ok) {
