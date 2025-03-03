@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginStyles } from "../Constants";
+import { loginStyles } from "../../Constants";
+import AuthContext from "../Contexts/AuthContext";
 
 
 const Login = () => {
+  const { token, login } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token, navigate]);
+
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,8 +36,8 @@ const Login = () => {
                 "password": password,
             })
         });
-
-      localStorage.setItem("token", response.data.token);
+      const data = await response.json();
+      login(data.token, { username });
       navigate("/dashboard"); 
     } catch (error) {
       setError("Invalid credentials. Please try again.");
