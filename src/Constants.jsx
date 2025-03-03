@@ -14,3 +14,10 @@ export const MenuSelect = {
     View_Current: 'viewCurrent',
     View_Past: 'viewPast',
   };
+
+  export const loginStyles = {
+    container: { textAlign: "center", marginTop: "100px" },
+    input: { display: "block", margin: "10px auto", padding: "10px", width: "80%", maxWidth: "300px" },
+    button: { padding: "10px 20px", backgroundColor: "blue", color: "white", border: "none", cursor: "pointer" },
+    error: { color: "red" }
+  };
