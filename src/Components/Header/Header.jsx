@@ -9,7 +9,7 @@ export default function Header() {
         <header className="fixed top-0 left-0 w-full bg-gray-800 text-yellow-500 text-3xl font-serif italic p-4 shadow-md z-50 flex justify-between items-center px-6">
             
            
-            <div className="text-center text-2xl">FS</div>
+            <div className="flex-1 text-center text-2xl">FS</div>
 
            
             <div 
@@ -21,7 +21,7 @@ export default function Header() {
                     //     }
                     // }}
             >
-                {user?.username || "Guest"} ⏷
+                {user?.username || "Guest"}
 
                 {dropdownOpen && (
                     <div className="absolute right-0 mt-2 w-40 bg-gray-700 text-white shadow-lg rounded-md py-2">
