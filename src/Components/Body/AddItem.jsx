@@ -6,6 +6,7 @@ import { ItemListContext } from "../Contexts/ItemListContext";
 import TopMassagePopup from "../../Utilities/TopMassagePopup";
 import { SidebarContext } from '../Contexts/SidebarContext';
 import AuthContext from "../Contexts/AuthContext";
+import { URL } from "../../Constants";
 
 export default function AddItem({ name, price, description, children }) {
     const modalRef = useRef();
@@ -34,7 +35,7 @@ export default function AddItem({ name, price, description, children }) {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:8080/api/v1/order', {
+            const response = await fetch(URL+'/api/v1/order', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -53,7 +54,7 @@ export default function AddItem({ name, price, description, children }) {
 
             const fetchData = async () => {
                 try {
-                    const response = await fetch('http://localhost:8080/api/v1/order', {
+                    const response = await fetch(URL+'/api/v1/order', {
                         headers: { 
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${authContext.token}` 

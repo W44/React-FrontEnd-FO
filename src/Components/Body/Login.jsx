@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginStyles } from "../../Constants";
 import AuthContext from "../Contexts/AuthContext";
-
+import { URL } from "../../Constants";
 
 const Login = () => {
   const { token, login } = useContext(AuthContext);
@@ -25,7 +25,7 @@ const Login = () => {
     setError("");
 
     try {
-        const response = await fetch('http://localhost:8080/api/v1/authenticate', {
+        const response = await fetch(URL+'/api/v1/authenticate', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

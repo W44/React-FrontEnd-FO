@@ -5,6 +5,7 @@ import { EditListItemContext } from "../Contexts/EditListItemContext";
 import EditItem from "./EditItem";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import AuthContext from "../Contexts/AuthContext";
+import { URL } from "../../Constants";
 
 
 
@@ -24,7 +25,7 @@ export default function ListItems({id,name,price,description,date,children})
     function deleteClickHandler()
     { 
 
-    fetch('http://localhost:8080/api/v1/order/' + id, {
+    fetch(URL+'/api/v1/order/' + id, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
@@ -35,7 +36,7 @@ export default function ListItems({id,name,price,description,date,children})
             {
               const fetchData = async () => {
                   try {
-                    const response = await fetch('http://localhost:8080/api/v1/order', {
+                    const response = await fetch(URL+'/api/v1/order', {
                         headers: {
                           'Content-Type': 'application/json',
                           'Authorization': `Bearer ${authContext.token}`

@@ -6,6 +6,7 @@ import { ItemListContext } from '../Contexts/ItemListContext';
 import "./BodyStyles.css"
 import { MenuSelect } from '../../Constants';
 import AuthContext from '../Contexts/AuthContext';
+import { URL } from '../../Constants';
 
 export default function Body()
 {
@@ -19,7 +20,7 @@ export default function Body()
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:8080/api/v1/order', {
+            const response = await fetch(URL+'/api/v1/order', {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${authContext.token}`
