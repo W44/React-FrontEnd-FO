@@ -30,6 +30,7 @@ export default function ListItems({id,name,price,description,date,children})
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authContext.token}`
         },
       }).then((response)=>{
         if (response.ok)

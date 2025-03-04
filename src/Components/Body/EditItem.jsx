@@ -5,7 +5,7 @@ import Modal from "../../Utilities/Modal";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import { EditListItemContext } from "../Contexts/EditListItemContext";
 import AuthContext from "../Contexts/AuthContext";
-import { URL } from "../../Constants";
+import { URL as Base_URL } from "../../Constants";
 
 
 
@@ -35,7 +35,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
 
     function editClickHandler()
     {
-        const url = new URL(URL+'/api/v1/order/' + id);
+        const url = new URL(Base_URL+'/api/v1/order/' + id);
         url.searchParams.append('name', itemName);
         url.searchParams.append('price', itemPrice);
         url.searchParams.append('description', itemDescription); 
@@ -57,7 +57,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
             {
               const fetchData = async () => {
                   try {
-                    const response = await fetch(URL+'/api/v1/order', {
+                    const response = await fetch(Base_URL+'/api/v1/order', {
                         headers: {
                           'Content-Type': 'application/json',
                           'Authorization': `Bearer ${authContext.token}`
