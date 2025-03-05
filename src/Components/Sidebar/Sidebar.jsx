@@ -26,14 +26,14 @@ return (
         View Current Orders
       </button>
     </div>
-    <div>
+    {/* <div>
       <button
         onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Past })}
         className={ButtonStyle1}
       >
         View Past Orders
       </button>
-    </div>
+    </div> */}
   </aside>
 );
 
