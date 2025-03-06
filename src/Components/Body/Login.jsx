@@ -82,7 +82,7 @@ const Login = () => {
         <p><strong>Hello, This is developed by Arslaan.</strong></p>
         <p>Please use <strong>username: root</strong> and <strong>password: 1234</strong> to enter the site.</p>
         <p>The server shuts down every 15 minutes, so it will take 2-4 minutes to login.</p>
-        <p>This application is still under development:)</p>
+        <p>This application is still under development, so I'll be adding more features soon! :)</p>
         <p>This is a concept application to add, remove, and edit simple objects while enforcing authentication.</p>
       </div>
 
