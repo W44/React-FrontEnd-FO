@@ -21,7 +21,7 @@ export default function Header() {
                     //     }
                     // }}
             >
-                {user?.username || "Guest"}
+                {user || "Guest"}
 
                 {dropdownOpen && (
                     <div className="absolute right-0 mt-2 w-40 bg-gray-700 text-white shadow-lg rounded-md py-2">
