@@ -34,7 +34,7 @@ const Login = () => {
       });
 
       const data = await response.json();
-      login(data.token, { username });
+      login(data.token, { "userName": username, "userId": data.userId });
       navigate("/dashboard");
     } catch (error) {
       setError("Invalid credentials. Please try again.");

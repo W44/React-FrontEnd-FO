@@ -50,7 +50,9 @@ export default function EditItem({id, name,price,description,toggleEdit,children
         body: JSON.stringify({
             "name": itemName,
             "price": itemPrice,
-            "description": itemDescription
+            "description": itemDescription,
+            "isactive": true,
+            "userId": authContext.userId,
         })
       }).then((response)=>{
         if (response.ok)

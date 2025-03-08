@@ -46,7 +46,9 @@ export default function AddItem({ name, price, description, children }) {
                     "name": itemName,
                     "price": itemsPrice,
                     "description": itemDescription,
-                    "date": "2024-03-24"
+                    "date": "2024-03-24",
+                    "isactive": true,
+                    "userId": authContext.userId
                 })
             });
 

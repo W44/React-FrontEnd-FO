@@ -5,6 +5,7 @@ const AuthContext = createContext(
     {
         token : [],
         user : [],
+        userId: [], 
         login : () => {},
         logout: () => {}
     }
@@ -13,18 +14,21 @@ const AuthContext = createContext(
 export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
+  const [userId, setUserID] = useState(null);
   const navigate = useNavigate();
 
 
   const login = (token, userData) => {
     setToken(token);
-    setUser(userData);
+    setUser(userData.userName);
+    setUserID(userData.userId)
     localStorage.setItem("token", token);
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
+    setUserID(null);
     localStorage.removeItem("token");
     navigate("/login");
   };
@@ -37,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ token, user, userId, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
