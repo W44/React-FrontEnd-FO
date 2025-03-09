@@ -34,7 +34,7 @@ export default function ListItems({ id, name, price, description, date, children
       if (response.ok) {
         const fetchData = async () => {
           try {
-            const response = await fetch(URL + '/api/v1/order', {
+            const response = await fetch(URL + '/api/v1/order/active', {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${authContext.token}`
