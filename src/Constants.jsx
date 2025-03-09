@@ -13,6 +13,7 @@ export const MenuSelect = {
     Add_New: 'new',
     View_Current: 'viewCurrent',
     View_Past: 'viewPast',
+    View_Stat: 'viewStat',
   };
 
   export const loginStyles = {
