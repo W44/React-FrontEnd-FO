@@ -7,6 +7,8 @@ import "./BodyStyles.css"
 import { MenuSelect } from '../../Constants';
 import AuthContext from '../Contexts/AuthContext';
 import { URL } from '../../Constants';
+import PastListItems from './PastListItems';
+import Stats from './Stats';
 
 export default function Body()
 {
@@ -20,7 +22,7 @@ export default function Body()
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(URL+'/api/v1/order', {
+            const response = await fetch(URL+'/api/v1/order/active', {
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${authContext.token}`
@@ -36,8 +38,26 @@ export default function Body()
             console.error('Error fetching data:', error);
           }
         };
-    
+        const fetchPreviousData = async () => {
+          try {
+            const response = await fetch(URL+'/api/v1/order/past', {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${authContext.token}`
+                  },
+              });
+            if (!response.ok) {
+              throw new Error('Server response caused an error');
+            }
+            const jsonData = await response.json();
+            
+            ItemCtx.setCustomPastItems(jsonData); 
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
         fetchData();
+        fetchPreviousData();
       }, []); 
 
       function SearchInputHandler(value)
@@ -46,6 +66,9 @@ export default function Body()
       }
       const filteredItems = ItemCtx.Items.filter((item) =>
         item.name.toLowerCase().includes(searchInput.toLowerCase()));  
+
+      //const filteredPastItems = ItemCtx.pastItems.filter((item) =>
+      //  item.name.toLowerCase().includes(searchInput.toLowerCase()));  
           
       console.log("Body", ItemCtx);
       return (
@@ -85,10 +108,26 @@ export default function Body()
             )}
           </ul>
           {menuCtx.Menu.MenuItem === MenuSelect.View_Past && (<>
-            <ListItems name={"Past"} price={30} description={"testing description"} />
-            <ListItems name={"Past"} price={30} description={"testing description"} />
-            <ListItems name={"Past"} price={30} description={"testing description"} />
+            {ItemCtx.pastItems.length > 0 ? (
+                            ItemCtx.pastItems.map((item) => (
+                                <li key={item.id}>
+                                    <PastListItems
+                                        id={item.id}
+                                        name={item.name}
+                                        price={item.price}
+                                        description={item.description}
+                                        date={item.date}
+                                    />
+                                </li>
+                            ))
+                        ) : (
+                            <p className="text-gray-700">No items found.</p>
+                        )}
             </>
+          )}
+          {menuCtx.Menu.MenuItem === MenuSelect.View_Stat && (<>
+          <Stats></Stats>
+          </>
           )}
         </div>
       );

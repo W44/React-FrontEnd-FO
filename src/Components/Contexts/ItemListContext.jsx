@@ -7,12 +7,16 @@ import { DummyList } from "../../Utilities/DummyData";
 export const ItemListContext = createContext(
 {
     Items : [],
+    pastItems:[],
     setCustomItems : () => {},
-    setCustomItemsRefreshed : () => {}
+    setCustomItemsRefreshed : () => {},
+    setCustomPastItems : () => {},
+    setCustomPastItemsRefreshed : () => {}
 })
 
 export const ItemListContextProvider = ({ children }) => {
     const [Items, setItem] = useState([]);
+    const [pastItems, setPastItems] = useState([]);
    
     const setCustomItems = (newItem) => {
       setItem((prevItems) => [...prevItems, ...newItem]);
@@ -22,10 +26,17 @@ export const ItemListContextProvider = ({ children }) => {
       setItem((prevItems) => [...newItem]);
     };
 
+    const setCustomPastItems = (newItem) => {
+      setPastItems((prevItems) => [...prevItems, ...newItem]);
+    };
+
+    const setCustomPastItemsRefreshed = (newItem) => {
+      setPastItems((prevItems) => [...newItem]);
+    };
     
    
     return (
-      <ItemListContext.Provider value={{ Items, setCustomItems, setCustomItemsRefreshed }}>
+      <ItemListContext.Provider value={{ Items, pastItems, setCustomItems, setCustomItemsRefreshed, setCustomPastItemsRefreshed, setCustomPastItems }}>
         {children}
       </ItemListContext.Provider>
     );

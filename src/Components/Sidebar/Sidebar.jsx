@@ -15,7 +15,7 @@ return (
         onClick={() => menuCtx.setMenu({ type: MenuSelect.Add_New })}
         className={ButtonStyle1}
       >
-        + New Order
+        🛒 New Order
       </button>
     </div>
     <div>
@@ -23,17 +23,25 @@ return (
         onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Current })}
         className={ButtonStyle1}
       >
-        View Current Orders
+         📦 View Current Orders
       </button>
     </div>
-    {/* <div>
+    <div>
       <button
         onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Past })}
         className={ButtonStyle1}
       >
-        View Past Orders
+         📜 View Past Orders
       </button>
-    </div> */}
+    </div>
+    <div>
+      <button
+        onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Stat })}
+        className={ButtonStyle1}
+      >
+         📉 User Stats
+      </button>
+    </div>
   </aside>
 );
 

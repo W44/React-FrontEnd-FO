@@ -1,7 +1,4 @@
 import { useContext, useState } from "react";
-import { ListItemStyle } from "../../Constants";
-import { ButtonStyleDelete, ButtonStyleAdd } from "../../Constants";
-import { EditListItemContext } from "../Contexts/EditListItemContext";
 import EditItem from "./EditItem";
 import { ItemListContext } from "../Contexts/ItemListContext";
 import AuthContext from "../Contexts/AuthContext";
@@ -51,6 +48,25 @@ export default function ListItems({ id, name, price, description, date, children
             console.error('Error fetching data:', error);
           }
         }
+        const fetchPreviousData = async () => {
+          try {
+            const response = await fetch(URL+'/api/v1/order/past', {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${authContext.token}`
+                  },
+              });
+            if (!response.ok) {
+              throw new Error('Server response caused an error');
+            }
+            const jsonData = await response.json();
+            
+            ItemCtx.setCustomPastItemsRefreshed(jsonData); 
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchPreviousData();
         fetchData();
 
       }
@@ -86,6 +102,25 @@ export default function ListItems({ id, name, price, description, date, children
             console.error('Error fetching data:', error);
           }
         }
+        const fetchPreviousData = async () => {
+          try {
+            const response = await fetch(URL+'/api/v1/order/past', {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${authContext.token}`
+                  },
+              });
+            if (!response.ok) {
+              throw new Error('Server response caused an error');
+            }
+            const jsonData = await response.json();
+            
+            ItemCtx.setCustomPastItemsRefreshed(jsonData); 
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchPreviousData();
         fetchData();
 
       }
@@ -98,7 +133,7 @@ export default function ListItems({ id, name, price, description, date, children
         {/* Header with "Order by: root" at the top right */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-stone-100">Order</h3>
-          <span className="text-xs sm:text-sm font-medium text-stone-400">Order by: root</span>
+          <span className="text-xs sm:text-sm font-medium text-stone-400">Order by: {authContext.user}</span>
         </div>
 
         {/* Order details */}

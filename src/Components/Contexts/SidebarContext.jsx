@@ -26,6 +26,11 @@ function MenuReducer(state,action)
       ...state,
     MenuItem : 'viewPast'
     }
+    if (action.type === "viewStat")
+      return {
+    ...state,
+  MenuItem : 'viewStat'
+  }
 
 
 }

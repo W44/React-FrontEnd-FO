@@ -59,7 +59,7 @@ export default function EditItem({id, name,price,description,toggleEdit,children
             {
               const fetchData = async () => {
                   try {
-                    const response = await fetch(Base_URL+'/api/v1/order', {
+                    const response = await fetch(Base_URL+'/api/v1/order/active', {
                         headers: {
                           'Content-Type': 'application/json',
                           'Authorization': `Bearer ${authContext.token}`
