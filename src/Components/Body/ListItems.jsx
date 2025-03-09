@@ -56,7 +56,41 @@ export default function ListItems({ id, name, price, description, date, children
       }
     });
   }
+  function completeClickHandler() {
 
+    fetch(URL + '/api/v1/order/complete/' + id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authContext.token}`
+      },
+    }).then((response) => {
+      if (response.ok) {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(URL + '/api/v1/order/active', {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authContext.token}`
+              },
+            });
+            if (!response.ok) {
+              throw new Error('Server response caused an error');
+            }
+            const jsonData = await response.json();
+
+            ItemCtx.setCustomItemsRefreshed(jsonData);
+            toggleEdit();
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        }
+        fetchData();
+
+      }
+    });
+  }
 
   return (
     <div className="flex flex-col w-full">
@@ -104,6 +138,14 @@ export default function ListItems({ id, name, price, description, date, children
               className="px-3 py-1 sm:px-4 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300"
             >
               Delete
+            </button>
+            </li>
+            <li>
+            <button
+              onClick={completeClickHandler}
+              className="px-3 py-1 sm:px-4 sm:py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
+            >
+              Complete
             </button>
           </li>
         </menu>
