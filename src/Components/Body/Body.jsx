@@ -52,7 +52,7 @@ export default function Body()
         <div className="h-screen w-3/4 px-8 bg-stone-400 overflow-y-auto">
           {menuCtx.Menu.MenuItem === MenuSelect.Add_New && <AddItem />}
           <ul>
-          {menuCtx.Menu.MenuItem === "viewCurrent" && (
+          {menuCtx.Menu.MenuItem === MenuSelect.View_Current && (
                 <>
                     <div className="mb-4">
                         <input
