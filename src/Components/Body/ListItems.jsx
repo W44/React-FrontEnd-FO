@@ -81,6 +81,10 @@ export default function ListItems({ id, name, price, description, date, children
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authContext.token}`
       },
+      body: JSON.stringify({
+        "ocUser": authContext.user,
+        "ocUid": authContext.userId,
+    })
     }).then((response) => {
       if (response.ok) {
         const fetchData = async () => {

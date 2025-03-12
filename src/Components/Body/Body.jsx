@@ -109,14 +109,15 @@ export default function Body()
           </ul>
           {menuCtx.Menu.MenuItem === MenuSelect.View_Past && (<>
             {ItemCtx.pastItems.length > 0 ? (
-                            ItemCtx.pastItems.map((item) => (
-                                <li key={item.id}>
+                            ItemCtx.pastItems.map((item, index) => (
+                                <li key={index}>
                                     <PastListItems
                                         id={item.id}
                                         name={item.name}
                                         price={item.price}
                                         description={item.description}
                                         date={item.date}
+                                        ocUser={item.ocUser}
                                     />
                                 </li>
                             ))
