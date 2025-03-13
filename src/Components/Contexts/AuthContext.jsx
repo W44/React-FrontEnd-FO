@@ -13,7 +13,7 @@ const AuthContext = createContext(
 
 export const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user"));
   const [userId, setUserID] = useState(null);
   const navigate = useNavigate();
 
@@ -23,6 +23,7 @@ export const AuthContextProvider = ({ children }) => {
     setUser(userData.userName);
     setUserID(userData.userId)
     localStorage.setItem("token", token);
+    localStorage.setItem("user", userData.userName);
   };
 
   const logout = () => {
