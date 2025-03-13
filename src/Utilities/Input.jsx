@@ -20,6 +20,12 @@ const Input = forwardRef(function Input({ label, textarea, tooltip, ...props }, 
   useImperativeHandle(ref, () => ({
     getError: () => error,
     getValue: () => inputRef.current.value.trim(),
+    clearValue: () => {
+      if (inputRef.current) {
+        inputRef.current.value = ""; 
+        setError("");
+      }
+    },
   }), [error]);
 
   function InputHandler(value) {
