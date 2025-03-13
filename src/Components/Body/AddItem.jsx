@@ -23,11 +23,13 @@ export default function AddItem({ name, price, description, children }) {
 
     
     async function AddItemHandler() {
-        const itemName = nameRef.current.value.trim();
-        const itemsPrice = priceRef.current.value.trim();
-        const itemDescription = descriptionRef.current.value.trim();
+        const itemName = nameRef.current.getValue();
+        const itemsPrice = priceRef.current.getValue();
+        const itemDescription = descriptionRef.current.getValue();
+        const itemNameProfanity = nameRef.current.getError();
+        const itemDescriptionProfanity = nameRef.current.getError();
         
-        if (!itemName || !itemsPrice || itemsPrice < 0 || !itemDescription) {
+        if (!itemName || !itemsPrice || itemsPrice < 0 || !itemDescription || itemNameProfanity || itemDescriptionProfanity ) {
             modalRef.current.open();
             return;
         }
@@ -120,7 +122,7 @@ export default function AddItem({ name, price, description, children }) {
     return (
         <>
             <Modal ref={modalRef} buttoncaption='Close'>
-                <h2 className={ModalTextStyle}>Validation failed, Please enter all the required fields</h2>
+                <h2 className={ModalTextStyle}>Validation failed, Please enter all the required fields or remove profanity.</h2>
             </Modal>
 
             {showSuccess && <TopMassagePopup message="Item added successfully!" color="green" />}
@@ -139,9 +141,9 @@ export default function AddItem({ name, price, description, children }) {
                     </li>
                 </menu>
                 <div>
-                    <Input ref={nameRef} label={'Name'} />
-                    <Input ref={priceRef} type={'number'} label={'Price'} />
-                    <Input ref={descriptionRef} textarea={true} label={'Description'} />
+                    <Input ref={nameRef} tooltip={"Write the item name that you want to order."} label={'Name'} />
+                    <Input ref={priceRef} tooltip={"Write the item price that you want to order."} type={'number'} label={'Price'} />
+                    <Input ref={descriptionRef} tooltip={"Write the item decsription that you want to order."} textarea={true} label={'Description'} />
                 </div>
             </div>
         </>

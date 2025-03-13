@@ -1,6 +1,11 @@
-import { forwardRef } from "react";
+import { forwardRef, useState, useImperativeHandle, useRef } from "react";
+import { Filter } from "bad-words";
 
-const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
+
+const filter = new Filter();
+
+
+const Input = forwardRef(function Input({ label, textarea, tooltip, ...props }, ref) {
   const classStyle = `
     w-full px-4 py-2 
     rounded-md border border-stone-300 bg-stone-200 text-stone-600 
@@ -8,19 +13,53 @@ const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
     transition duration-300
   `;
 
+  const inputRef = useRef(null);
+
+  const [error, setError] = useState("");
+
+  useImperativeHandle(ref, () => ({
+    getError: () => error,
+    getValue: () => inputRef.current.value.trim(),
+  }), [error]);
+
+  function InputHandler(value) {
+    if (filter.isProfane(value)) {
+      setError("Profanity is not allowed.");
+    } else {
+      setError("");
+    }
+  }
+
   return (
-    <p className="flex flex-col gap-2 my-4">
-      <label className="text-sm font-semibold text-stone-900">{label}</label>
+    <div className="flex flex-col gap-2 my-4">
+      <label className="text-sm font-semibold text-stone-900">{label}
+      {tooltip && (
+          <span
+            className="tooltip-icon"
+            title={tooltip}
+            style={{ cursor: "pointer", marginLeft: "5px" }}
+          >
+            ℹ️
+          </span>
+        )}
+      </label>
       {textarea ? (
+        <>
         <textarea
-          ref={ref}
+          ref={inputRef}
           className={`${classStyle} resize-none`}
+          onChange={(e) => InputHandler(e.target.value)}
           {...props}
         ></textarea>
+        {error && <p className="text-red-700 font-bold">{error}</p>}
+        </>
       ) : (
-        <input ref={ref} className={classStyle} {...props} />
+        <>
+        <input ref={inputRef} className={classStyle} onChange={(e) => InputHandler(e.target.value)} {...props} />
+        {error && <p className="text-red-700 font-bold">{error}</p>}
+        </>
       )}
-    </p>
+    </div>
   );
 });
 
