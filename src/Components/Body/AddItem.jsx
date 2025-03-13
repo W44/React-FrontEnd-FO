@@ -22,6 +22,12 @@ export default function AddItem({ name, price, description, children }) {
     const [showError, setShowError] = useState(false);
 
     
+    function CancelClickHandler()
+    {
+        const itemName = nameRef.current.clearValue();
+        const itemsPrice = priceRef.current.clearValue();
+        const itemDescription = descriptionRef.current.clearValue();
+    }
     async function AddItemHandler() {
         const itemName = nameRef.current.getValue();
         const itemsPrice = priceRef.current.getValue();
@@ -137,7 +143,7 @@ export default function AddItem({ name, price, description, children }) {
                         </button>
                     </li>
                     <li>
-                        <button className={ButtonStyle2}>Cancel</button>
+                        <button className={ButtonStyle2} onClick={CancelClickHandler}>Reset</button>
                     </li>
                 </menu>
                 <div>
