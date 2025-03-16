@@ -90,25 +90,6 @@ export default function AddItem({ name, price, description, children }) {
                     }, 3000);
                 }
             };
-            const fetchPreviousData = async () => {
-                try {
-                  const response = await fetch(URL+'/api/v1/order/past', {
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authContext.token}`
-                        },
-                    });
-                  if (!response.ok) {
-                    throw new Error('Server response caused an error');
-                  }
-                  const jsonData = await response.json();
-                  
-                  ItemCtx.setCustomPastItemsRefreshed(jsonData); 
-                } catch (error) {
-                  console.error('Error fetching data:', error);
-                }
-              };
-            fetchPreviousData();
             await fetchData();
             
         } catch (error) {
