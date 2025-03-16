@@ -1,5 +1,6 @@
 import { forwardRef, useState, useImperativeHandle, useRef } from "react";
 import { Filter } from "bad-words";
+import "./Input.css"
 
 
 const filter = new Filter();
@@ -22,7 +23,7 @@ const Input = forwardRef(function Input({ label, textarea, tooltip, ...props }, 
     getValue: () => inputRef.current.value.trim(),
     clearValue: () => {
       if (inputRef.current) {
-        inputRef.current.value = ""; 
+        inputRef.current.value = "";
         setError("");
       }
     },
@@ -39,30 +40,29 @@ const Input = forwardRef(function Input({ label, textarea, tooltip, ...props }, 
   return (
     <div className="flex flex-col gap-2 my-4">
       <label className="text-sm font-semibold text-stone-900">{label}
-      {tooltip && (
-          <span
-            className="tooltip-icon"
-            title={tooltip}
-            style={{ cursor: "pointer", marginLeft: "5px" }}
-          >
+        {tooltip && (
+          <span className="tooltip-icon" style={{ marginLeft: "5px", position: "relative" }}>
             ℹ️
+            <span className="tooltip">{tooltip}</span>
           </span>
         )}
+
+
       </label>
       {textarea ? (
         <>
-        <textarea
-          ref={inputRef}
-          className={`${classStyle} resize-none`}
-          onChange={(e) => InputHandler(e.target.value)}
-          {...props}
-        ></textarea>
-        {error && <p className="text-red-700 font-bold">{error}</p>}
+          <textarea
+            ref={inputRef}
+            className={`${classStyle} resize-none`}
+            onChange={(e) => InputHandler(e.target.value)}
+            {...props}
+          ></textarea>
+          {error && <p className="text-red-700 font-bold">{error}</p>}
         </>
       ) : (
         <>
-        <input ref={inputRef} className={classStyle} onChange={(e) => InputHandler(e.target.value)} {...props} />
-        {error && <p className="text-red-700 font-bold">{error}</p>}
+          <input ref={inputRef} className={classStyle} onChange={(e) => InputHandler(e.target.value)} {...props} />
+          {error && <p className="text-red-700 font-bold">{error}</p>}
         </>
       )}
     </div>
