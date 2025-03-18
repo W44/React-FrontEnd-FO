@@ -16,6 +16,15 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(localStorage.getItem("user"));
   const [userId, setUserID] = useState(null);
   const navigate = useNavigate();
+  const IDLE_TIMEOUT = 30 * 60 * 1000; 
+  let logoutTimer;
+
+  const resetLogoutTimer = () => {
+    if (logoutTimer) clearTimeout(logoutTimer);
+    logoutTimer = setTimeout(() => {
+      logout();
+    }, IDLE_TIMEOUT);
+  };
 
 
   const login = (token, userData) => {
@@ -34,11 +43,20 @@ export const AuthContextProvider = ({ children }) => {
     navigate("/login");
   };
 
-
   useEffect(() => {
-    if (!token) {
-      logout();
-    }
+
+    resetLogoutTimer();
+
+    const activityHandler = () => resetLogoutTimer();
+    
+    window.addEventListener("mousemove", activityHandler);
+    window.addEventListener("keydown", activityHandler);
+    
+    return () => {
+      window.removeEventListener("mousemove", activityHandler);
+      window.removeEventListener("keydown", activityHandler);
+      clearTimeout(logoutTimer);
+    };
   }, [token]);
 
   return (
