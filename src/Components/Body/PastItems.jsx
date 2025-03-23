@@ -59,6 +59,7 @@ const PastItems = () => {
                         price={item.price}
                         description={item.description}
                         date={item.date}
+                        username={item.username}
                         ocUser={item.ocUser}
                     />
                 </li>

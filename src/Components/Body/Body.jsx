@@ -79,6 +79,8 @@ export default function Body()
                                         price={item.price}
                                         description={item.description}
                                         date={item.date}
+                                        username={item.username}
+                                        disableEdit={item.userId != authContext.userId}
                                     />
                                 </li>
                             ))

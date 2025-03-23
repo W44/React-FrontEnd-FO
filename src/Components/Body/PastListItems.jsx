@@ -4,7 +4,7 @@ import AuthContext from "../Contexts/AuthContext";
 
 
 
-export default function PastListItems({ id, name, price, description, date, ocUser, children }) {
+export default function PastListItems({ id, name, price, description, date, username, ocUser, children }) {
   const authContext = useContext(AuthContext);
 
   return (
@@ -14,7 +14,7 @@ export default function PastListItems({ id, name, price, description, date, ocUs
           <h3 className="text-lg sm:text-xl font-bold text-stone-100">Order</h3>
           <div className="flex flex-col items-end">
             <span className="text-xs sm:text-sm font-medium text-stone-400">
-              Order by: {authContext.user}
+              Order by: {username}
             </span>
             <span className="text-xs sm:text-sm font-medium text-stone-400">
               Order Completed by: {ocUser ? ocUser : "Unassigned"}

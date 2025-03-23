@@ -6,7 +6,7 @@ import { URL } from "../../Constants";
 
 
 
-export default function ListItems({ id, name, price, description, date, children }) {
+export default function ListItems({ id, name, price, description, date, children, username, disableEdit }) {
 
   const ItemCtx = useContext(ItemListContext);
   const authContext = useContext(AuthContext);
@@ -65,7 +65,7 @@ export default function ListItems({ id, name, price, description, date, children
       body: JSON.stringify({
         "ocUser": authContext.user,
         "ocUid": authContext.userId,
-    })
+      })
     }).then((response) => {
       if (response.ok) {
         const fetchData = async () => {
@@ -99,7 +99,7 @@ export default function ListItems({ id, name, price, description, date, children
         {/* Header with "Order by: root" at the top right */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <h3 className="text-lg sm:text-xl font-bold text-stone-100">Order</h3>
-          <span className="text-xs sm:text-sm font-medium text-stone-400">Order by: {authContext.user}</span>
+          <span className="text-xs sm:text-sm font-medium text-stone-400">Order by: {username}</span>
         </div>
 
         {/* Order details */}
@@ -127,21 +127,23 @@ export default function ListItems({ id, name, price, description, date, children
         <menu className="flex items-center justify-start gap-4 pt-4 sm:pt-6 border-t border-stone-700 mt-4 sm:mt-6">
           <li>
             <button
+              disabled={disableEdit}
+              title={disableEdit ? "You are not authorized to edit this order" : "Click to edit"}
               onClick={() => toggleEdit()}
-              className="px-3 py-1 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
-            >
+              className={`px-3 py-1 sm:px-4 sm:py-2 ${disableEdit ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : ' bg-blue-500 text-white hover:bg-blue-600'} rounded-lg transition-colors duration-300`}            >
               Edit
             </button>
           </li>
           <li>
             <button
+              disabled={disableEdit}
+              title={disableEdit ? "You are not authorized to delete this order" : "Click to edit"}
               onClick={deleteClickHandler}
-              className="px-3 py-1 sm:px-4 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300"
-            >
+              className={`px-3 py-1 sm:px-4 sm:py-2 ${disableEdit ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'} rounded-lg transition-colors duration-300`}            >
               Delete
             </button>
-            </li>
-            <li>
+          </li>
+          <li>
             <button
               onClick={completeClickHandler}
               className="px-3 py-1 sm:px-4 sm:py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
