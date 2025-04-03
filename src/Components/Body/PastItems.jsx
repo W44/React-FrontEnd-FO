@@ -28,7 +28,7 @@ const PastItems = () => {
                     }
                     const jsonData = await response.json();
 
-                    ItemCtx.setCustomPastItems(jsonData);
+                    ItemCtx.setCustomPastItemsRefreshed(jsonData);
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
