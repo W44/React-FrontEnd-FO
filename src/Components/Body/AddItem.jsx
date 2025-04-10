@@ -62,39 +62,14 @@ export default function AddItem({ name, price, description, children }) {
 
             if (!response.ok) throw new Error('Failed to add item');
 
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(URL+'/api/v1/order/active', {
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${authContext.token}` 
-                        },
-                    });
-                    if (!response.ok) throw new Error('Error fetching items');
-
-                    const jsonData = await response.json();
-                    ItemCtx.setCustomItemsRefreshed(jsonData);
-
-                    // Show success message
-                    setShowSuccess(true);
+            setShowSuccess(true);
                     
-                    setTimeout(() => {
-                        setShowSuccess(false);
-                        menuCtx.setMenu({ type: MenuSelect.View_Current });
-                    }, 3000);
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                    setShowError(true);
-                    setTimeout(() => {
-                        setShowError(false);
-                    }, 3000);
-                }
-            };
-            await fetchData();
+            setTimeout(() => {
+                setShowSuccess(false);
+                menuCtx.setMenu({ type: MenuSelect.View_Current });
+            }, 3000);
             
         } catch (error) {
-            console.error('Error adding item:', error);
-            console.error('Error fetching data:', error);
                     setShowError(true);
                     setTimeout(() => {
                         setShowError(false);
@@ -102,7 +77,7 @@ export default function AddItem({ name, price, description, children }) {
         } finally {
             setTimeout(() => {
                 setIsLoading(false);
-            }, 2000);
+            }, 3000);
         }
     }
 
