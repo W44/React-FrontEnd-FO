@@ -86,6 +86,7 @@ const Login = () => {
         <p>This is a concept application to add, remove, and edit customer orders while enforcing authentication.</p>
       </div>
 
+      <img rel="manifest" src={process.env.PUBLIC_URL + "/G0x5mip0Jq.gif"}></img>
       <div className="button-container">
         <button onClick={() => window.open("https://github.com/W44/React-FrontEnd-FO", "_blank")} className="github-button">
           Check Application Frontend Code
