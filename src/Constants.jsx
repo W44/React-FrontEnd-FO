@@ -23,5 +23,5 @@ export const MenuSelect = {
     error: { color: "red" }
   };
 
-  export const URL = "https://spring-fo.onrender.com" 
+  export const URL = process.env.REACT_APP_BASE_URL
   
