@@ -23,5 +23,5 @@ export const MenuSelect = {
     error: { color: "red" }
   };
 
-  export const URL = env.BASE_URL
+  export const URL = process.env.BASE_URL
   
