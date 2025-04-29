@@ -14,6 +14,7 @@ export const MenuSelect = {
     View_Current: 'viewCurrent',
     View_Past: 'viewPast',
     View_Stat: 'viewStat',
+    View_Chat: 'viewChat'
   };
 
   export const loginStyles = {
