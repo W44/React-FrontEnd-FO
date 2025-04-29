@@ -16,10 +16,9 @@ const Chat = () => {
     const fetchPreviousMessages = async () => {
       try {
         const response = await fetch(URL + `/api/v1/chat/messages`, {
-          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authContext.token}`,
+            'Authorization': `Bearer ${authContext.token}`
           },
         });
   
