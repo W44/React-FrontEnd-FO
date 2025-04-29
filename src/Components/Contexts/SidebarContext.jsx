@@ -31,6 +31,11 @@ function MenuReducer(state,action)
     ...state,
   MenuItem : 'viewStat'
   }
+  if (action.type === "viewChat")
+    return {
+      ...state,
+    MenuItem : 'viewChat'
+  }
 
 
 }

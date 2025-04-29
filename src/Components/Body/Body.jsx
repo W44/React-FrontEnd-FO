@@ -11,6 +11,7 @@ import PastListItems from './PastListItems';
 import Stats from './Stats';
 import PastItems from './PastItems';
 import CurrentItems from './CurrentItems';
+import Chat from './Chat'
 
 export default function Body() {
 
@@ -31,6 +32,10 @@ export default function Body() {
       )}
       {menuCtx.Menu.MenuItem === MenuSelect.View_Stat && (<>
         <Stats></Stats>
+      </>
+      )}
+      {menuCtx.Menu.MenuItem === MenuSelect.View_Chat && (<>
+        <Chat></Chat>
       </>
       )}
     </div>
