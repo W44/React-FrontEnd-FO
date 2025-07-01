@@ -42,14 +42,14 @@ export default function Sidebar() {
           📉 User Stats
         </button>
       </div>
-      <div>
+      {/* <div>
         <button
           onClick={() => menuCtx.setMenu({ type: MenuSelect.View_Chat })}
           className={ButtonStyle1}
         >
           💬 Common Chat
         </button>
-      </div>
+      </div> */}
 
       <div className="flex-grow" />
 
