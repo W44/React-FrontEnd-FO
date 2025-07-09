@@ -87,14 +87,14 @@ const Login = () => {
       </div>
 
       <img rel="manifest" src={process.env.PUBLIC_URL + "/G0x5mip0Jq.gif"}></img>
-      <div className="button-container">
+      {/* <div className="button-container">
         <button onClick={() => window.open("https://github.com/W44/React-FrontEnd-FO", "_blank")} className="github-button">
           Check Application Frontend Code
         </button>
         <button onClick={() => window.open("https://github.com/W44/Java_BackEnd-FO", "_blank")} className="github-button">
           Check Application Backend Code
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
